@@ -1,34 +1,26 @@
 import React from "react";
 // import { Routes, Route, Redi } from "react-router";
-import { Navigate, RouteObject, useRoutes } from "react-router-dom";
-import {isLogined} from './utils/auth'
+import { Link, RouteObject, useRoutes } from "react-router-dom";
 import "./App.css";
-import Login from "./pages/Login";
-import Main from "./pages/Main";
-import Profile from "./pages/Profile";
+import { rootRouter } from "./router";
+
+
 
 function App() {
-  
-  const routes = useRoutes([
-    {
-      path: "/",
-      element: isLogined() ? <Main/> : <Navigate to='/login' />,
-      children: [
-        {
-          path: "/profile",
-          element: <Profile />,
-        },
-      ]
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    
-  ]);
+  const Outlet = () => {
+    const routes = useRoutes(rootRouter);
+    return routes;
+  }
 
   return (
-    <div>{routes}</div>
+    <div>
+      <div className="navbar">
+        <Link to="/">main</Link>
+        <Link to="/profile">profile</Link>
+        <Link to="/login">login</Link>
+      </div>
+      <Outlet/>
+    </div>
   );
 }
 
