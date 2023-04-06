@@ -2,7 +2,7 @@
 import '@testing-library/jest-dom'
 import { render, fireEvent, screen, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import App from '../../src/App';
 
 it('can navigate between main and profilew pages', async () => {
   await act(async () => {
